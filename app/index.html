@@ -6,19 +6,33 @@
 </head>
 <body>
 <div ng-controller="theController">
-	{{providervalue}}
+	{{providerValue}}
 	<br />
-	{{factoryvalue)}
+	{{factoryValue}}
+	<br />
+	{{serviceValue}}
+	<br />
+	{{valueValue}}
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
 <script>
+
+	function Service(){}
+	Service.prototype.log = function(){return "Service"}
+	var s = new Service;
+	console.log(s.log());
+
 	angular.module('APP',[])
 	.provider('theProvider', { $get: function(){ return "Provider"} })
 	.factory('theFactory', function(){return "Factory"})
-	.controller('theController', ['$scope', 'theProvider', 'theFactory',
-		function($scope,theProvider, theFactory){
+	.service('theService', Service)
+	.value('theValue','Value')
+	.controller('theController', ['$scope', 'theProvider', 'theFactory', 'theService', 'theValue',
+		function($scope, theProvider, theFactory, theService, theValue){
 			$scope.providerValue = theProvider
 			$scope.factoryValue = theFactory
+			$scope.serviceValue = theService.log()
+			$scope.valueValue = theValue
 		}
 	]);
 </script>
