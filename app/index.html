@@ -16,11 +16,10 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
 <script>
-
+*
 	angular.module('APP',[])
 	.provider('theProvider', { $get: function(){ return "Provider"} })
 	.factory('theFactory', function(){return "Factory"})
-	//.service('theService', Service)
 	.service('theService', function(){
 		this.log = function(){return "Service"}
 	})
