@@ -12,7 +12,15 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
 <script>
-
+	angular.module('APP',[])
+	.provider('theProvider', { $get: function(){ return "Provider"} })
+	.factory('theFactory', function(){return "Factory"})
+	.controller('theController', ['$scope', 'theProvider', 'theFactory',
+		function($scope,theProvider, theFactory){
+			$scope.providerValue = theProvider
+			$scope.factoryValue = theFactory
+		}
+	]);
 </script>
 </body>
 </html>
